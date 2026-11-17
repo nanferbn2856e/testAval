@@ -1,0 +1,4 @@
+ADMINISTRADOR = "Administrador"
+CLIENTE = "Cliente"
+
+ROLES = [ADMINISTRADOR, CLIENTE]
