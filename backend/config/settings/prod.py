@@ -14,3 +14,21 @@ STATIC_ROOT = BASE_DIR / "staticfiles"
 SECURE_SSL_REDIRECT = env.bool("SECURE_SSL_REDIRECT", default=True)
 SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SECURE = True
+
+# --- Archivos estáticos con WhiteNoise ---
+_security_idx = MIDDLEWARE.index("django.middleware.security.SecurityMiddleware")
+MIDDLEWARE.insert(_security_idx + 1, "whitenoise.middleware.WhiteNoiseMiddleware")
+
+STORAGES = {
+    "default": {"BACKEND": "django.core.files.storage.FileSystemStorage"},
+    "staticfiles": {"BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage"},
+}
+
+# --- Detrás de un proxy / balanceador con HTTPS ---
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+
+# --- HSTS: configurable, 0 en local ---
+SECURE_HSTS_SECONDS = env.int("SECURE_HSTS_SECONDS", default=0)
+
+# --- Documentación de la API apagada en prod ---
+ENABLE_API_DOCS = False

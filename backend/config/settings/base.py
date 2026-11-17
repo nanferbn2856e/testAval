@@ -94,6 +94,7 @@ SPECTACULAR_SETTINGS = {
 APP_NAME = "users"
 STARTUP_MESSAGE = ""
 PORT = 8000
+ENABLE_API_DOCS = True  # prod.py lo apaga
 
 LOGGING = {
     "version": 1,
