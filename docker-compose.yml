@@ -22,6 +22,7 @@ services:
       CORS_ALLOWED_ORIGINS: ${CORS_ALLOWED_ORIGINS}
       CSRF_TRUSTED_ORIGINS: ${CSRF_TRUSTED_ORIGINS}
       SECURE_SSL_REDIRECT: ${SECURE_SSL_REDIRECT}
+      COOKIES_SECURE: ${COOKIES_SECURE:-True}
     depends_on:
       db:
         condition: service_healthy

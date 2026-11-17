@@ -12,8 +12,10 @@ CSRF_TRUSTED_ORIGINS = env.list("CSRF_TRUSTED_ORIGINS", default=[])
 STATIC_ROOT = BASE_DIR / "staticfiles"
 
 SECURE_SSL_REDIRECT = env.bool("SECURE_SSL_REDIRECT", default=True)
-SESSION_COOKIE_SECURE = True
-CSRF_COOKIE_SECURE = True
+# True en un servidor con HTTPS real; False solo para la prueba local por http
+COOKIES_SECURE = env.bool("COOKIES_SECURE", default=True)
+SESSION_COOKIE_SECURE = COOKIES_SECURE
+CSRF_COOKIE_SECURE = COOKIES_SECURE
 
 # --- Archivos estáticos con WhiteNoise ---
 _security_idx = MIDDLEWARE.index("django.middleware.security.SecurityMiddleware")
